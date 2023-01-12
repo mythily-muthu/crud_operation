@@ -7,6 +7,14 @@ const EmpListing = () => {
     let [empData, setEmpData] = useState([])
 
 
+
+
+
+
+
+
+
+
     const getAllEmployees = async () => {
         let res = await axios.get("http://localhost:8000/employees");
         setEmpData(res.data);
@@ -32,7 +40,7 @@ const EmpListing = () => {
                                 <td>Name</td>
                                 <td>Email</td>
                                 <td>Phone</td>
-                                <td>Acrion</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,11 +49,11 @@ const EmpListing = () => {
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
                                         <td>{item.name}</td>
-                                        <td>{item.eamil}</td>
+                                        <td>{item.email}</td>
                                         <td>{item.phone}</td>
-                                        <td><a className='btn btn-success'>Edit</a>
-                                            <a className='btn btn-danger'>Remove</a>
-                                            <a className='btn btn-primary'>Details</a></td>
+                                        <td><a onClick={() => { LoadEdit(item.id) }} className='btn btn-success'>Edit</a>
+                                            <a onClick={() => { RemoveFunction(item.id) }} className='btn btn-danger'>Remove</a>
+                                            <a onClick={() => { LoadDetail(item.id) }} className='btn btn-primary'>Details</a></td>
                                     </tr>
                                 ))}
                         </tbody>

@@ -1,28 +1,29 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 const EmpCreate = () => {
 
+    const history = useNavigate();
 
     let [employees, setEmployees] = useState(
         {
             id: "",
             name: "",
-            email: "",
+            email: "@gmail.com",
             phone: "",
-            active: true,
+
         });
 
-
-    let handleSubmit = (e) => {
-        e.preventDefault()
-        //console.log({ id, name, email, phone, active })
-
-
-
-
-
-    };
+    let handleSubmit = async () => {
+        let id = Math.floor(Math.random() * 1000);
+        await axios.post(" http://localhost:8000/employees", {
+            id: id,
+            ...employees,
+        })
+        console.log("submitted")
+        history('/')
+    }
     return (
         <div>
             <div className='row'>
@@ -57,8 +58,8 @@ const EmpCreate = () => {
                                                 type="text"
                                                 value={employees.name}
                                                 onChange={(e) => { setEmployees({ ...employees, name: e.target.value }) }}
-
                                             ></input>
+
                                         </div>
                                     </div>
 
@@ -69,6 +70,7 @@ const EmpCreate = () => {
                                                 required
                                                 className='form-control'
                                                 placeholder='Email'
+                                                type="email"
                                                 value={employees.email}
                                                 onChange={(e) => { setEmployees({ ...employees, email: e.target.value }) }}
                                             ></input>
@@ -88,15 +90,7 @@ const EmpCreate = () => {
                                                 }}></input>
                                         </div>
                                     </div>
-                                    <div className='col-lg-12'>
-                                        <div className='form-check'>
-                                            <input type='checkbox' className='form-check-input' checked={employees.active} onChange={(e) =>
-                                                setEmployees(e.target.value)
-                                            }></input>
-                                            <label className='form-check-label'>is active</label>
 
-                                        </div>
-                                    </div>
                                     <div className='col-lg-12 '  >
                                         <div className='form-group ' >
                                             <button type='submit' className='btn btn-success' >Save</button>
