@@ -8,21 +8,18 @@ const EmpCreate = () => {
 
     let [employees, setEmployees] = useState(
         {
-            id: "",
             name: "",
             email: "@gmail.com",
             phone: "",
-
         });
 
     let handleSubmit = async () => {
         let id = Math.floor(Math.random() * 1000);
         await axios.post(" http://localhost:8000/employees", {
-            id: id,
+            id,
             ...employees,
         })
-        console.log("submitted")
-        history('/')
+        console.log("hisfwafew")
     }
     return (
         <div>

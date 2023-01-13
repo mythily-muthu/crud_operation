@@ -1,15 +1,28 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EmpListing = () => {
 
     let [empData, setEmpData] = useState([])
+    let navigate = useNavigate()
 
 
 
+    let LoadEdit = (id) => {
+        navigate("/employee/edit/" + id)
+    }
 
 
+    let LoadDetails = (id) => {
+        navigate("/employee/details/" + id)
+    }
+
+
+
+    let RemoveFunction = (id) => {
+        navigate("/")
+    }
 
 
 
@@ -53,7 +66,7 @@ const EmpListing = () => {
                                         <td>{item.phone}</td>
                                         <td><a onClick={() => { LoadEdit(item.id) }} className='btn btn-success'>Edit</a>
                                             <a onClick={() => { RemoveFunction(item.id) }} className='btn btn-danger'>Remove</a>
-                                            <a onClick={() => { LoadDetail(item.id) }} className='btn btn-primary'>Details</a></td>
+                                            <a onClick={() => { LoadDetails(item.id) }} className='btn btn-primary'>Details</a></td>
                                     </tr>
                                 ))}
                         </tbody>
