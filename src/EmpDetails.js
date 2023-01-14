@@ -4,17 +4,21 @@ import { useParams } from 'react-router-dom'
 
 const EmpDetails = () => {
 
-    let emp_id = useParams()
-    let [empData, setEmpData] = useState([])
+    let params = useParams();
 
-    const getAllEmployees = async () => {
-        let res = await axios.get("http://localhost:8000/employees" + emp_id);
+    let [empData, setEmpData] = useState({})
+
+    const getEmployeeData = async () => {
+        let res = await axios.get(`http://localhost:8000/employees/${params.emp_id}`);
         setEmpData(res.data);
     };
-    console.log(empData)
+
+
     useEffect(() => {
-        getAllEmployees();
+        getEmployeeData();
     }, []);
+
+    console.log("emp dat:", empData)
 
     return (
         <div>

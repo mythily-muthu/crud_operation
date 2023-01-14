@@ -2,15 +2,32 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
+import { Button, Modal } from 'react-bootstrap';
+
 const EmpListing = () => {
 
     let [empData, setEmpData] = useState([])
     let navigate = useNavigate()
 
+    const [showModal, setShowModal] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
+
+    const handleDelete = id => {
+        setItemToDelete(id);
+        setShowModal(true);
+    }
+
+    const handleConfirmDelete = async () => {
+        // Delete the item here
+        await axios.delete(`http://localhost:8000/employees/${itemToDelete}`);
+        getAllEmployees()
+        setShowModal(false);
+    }
+
 
 
     let LoadEdit = (id) => {
-        navigate("/employee/edit/" + id)
+        navigate(`/employee/edit/${id}`)
     }
 
 
@@ -20,10 +37,14 @@ const EmpListing = () => {
 
 
 
-    let RemoveFunction = (id) => {
-        navigate("/")
-    }
 
+    const deleteEmployee = async (id) => {
+        if (window.confirm("You want to delete this item?")) {
+            // Delete the item here
+
+        }
+
+    }
 
 
 
@@ -32,7 +53,7 @@ const EmpListing = () => {
         let res = await axios.get("http://localhost:8000/employees");
         setEmpData(res.data);
     };
-    console.log(empData)
+
     useEffect(() => {
         getAllEmployees();
     }, []);
@@ -65,12 +86,27 @@ const EmpListing = () => {
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
                                         <td><a onClick={() => { LoadEdit(item.id) }} className='btn btn-success'>Edit</a>
-                                            <a onClick={() => { RemoveFunction(item.id) }} className='btn btn-danger'>Remove</a>
+                                            <a onClick={() => { handleDelete(item.id) }} className='btn btn-danger'>Remove</a>
                                             <a onClick={() => { LoadDetails(item.id) }} className='btn btn-primary'>Details</a></td>
                                     </tr>
                                 ))}
                         </tbody>
                     </table>
+
+                    <Modal show={showModal} onHide={() => setShowModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Confirm Delete</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Are you sure you want to delete {itemToDelete} item?</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowModal(false)}>
+                                Cancel
+                            </Button>
+                            <Button variant="danger" onClick={handleConfirmDelete}>
+                                Delete
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
         </div>

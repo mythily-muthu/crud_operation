@@ -9,7 +9,7 @@ const EditEmployee = () => {
     const [employeeData, setEmployeeData] = useState({
         name: "",
         email: "",
-        phone_number: "",
+        phone: "",
     });
 
     let getEmployeeData = async () => {
@@ -19,7 +19,7 @@ const EditEmployee = () => {
         setEmployeeData(res.data);
     };
 
-    const handleEdit = (e, id) => {
+    const handleUpdate = (e, id) => {
         e.preventDefault();
 
         axios.put(`http://localhost:8000/employees/${id}`, {
@@ -38,7 +38,7 @@ const EditEmployee = () => {
             <div className="row">
                 <div className="offset-lg-3 col-lg-6">
                     <form className="container">
-                        <div className="card" style={{ textAlign: "left" }}>
+                        <div className="card" style={{ textAlign: "left", marginTop: "30px" }}>
                             <div className="card-title">
                                 <h2>Employee Edit</h2>
                             </div>
@@ -82,23 +82,24 @@ const EditEmployee = () => {
                                             <label>Phone</label>
                                             <input
                                                 className="form-control"
-                                                value={employeeData.phone_number}
+                                                value={employeeData.phone}
                                                 onChange={(e) =>
                                                     setEmployeeData({
                                                         ...employeeData,
-                                                        phone_number: e.target.value,
+                                                        phone: e.target.value,
                                                     })
                                                 }
                                             ></input>
                                         </div>
                                     </div>
 
-                                    <div className="col-lg-12">
-                                        <div className="form-group">
+
+                                    <div className="col-lg-12 ">
+                                        <div className="form-group   d-flex gap-2 mt-3 align-items-center " >
                                             <button
                                                 className="btn btn-success"
                                                 type="submit"
-                                                onClick={(e) => handleEdit(e, employeeData.id)}
+                                                onClick={(e) => handleUpdate(e, employeeData.id)}
                                             >
                                                 update
                                             </button>
@@ -117,4 +118,4 @@ const EditEmployee = () => {
     );
 };
 
-export default EditEmployee;
+export default EditEmployee;  

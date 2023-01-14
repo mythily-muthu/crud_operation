@@ -10,7 +10,7 @@ import EmpDetails from "./EmpDetails";
 function App() {
   return (
     <div className="App">
-      <h2 className='text-center'>React CRUD application</h2>
+      <h2 className='text-center ' style={{ marginTop: "30px" }}>React CRUD application</h2>
       <Router>
         <Routes>
           <Route path="/" element={<EmpListing />} />
