@@ -65,9 +65,9 @@ const EmpListing = () => {
                     <h2 className='text-center' >Employee Listing</h2>
                 </div>
                 <div className='card-body'>
-                    <button className='btn btn-warning '> <Link to="employee/create">Add new employee</Link></button>
+                    <button className='btn  text-white bg-dark'> <Link to="employee/create">Add new employee</Link></button>
 
-                    <table className='table table-bodered'>
+                    <table className='table table-bodered flex mt-4'>
                         <thead className='bg-dark text-white'>
                             <tr>
                                 <td>ID</td>
@@ -85,7 +85,7 @@ const EmpListing = () => {
                                         <td>{item.name}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
-                                        <td><a onClick={() => { LoadEdit(item.id) }} className='btn btn-success'>Edit</a>
+                                        <td className='d-flex , gap-2'><a onClick={() => { LoadEdit(item.id) }} className='btn btn-success'>Edit</a>
                                             <a onClick={() => { handleDelete(item.id) }} className='btn btn-danger'>Remove</a>
                                             <a onClick={() => { LoadDetails(item.id) }} className='btn btn-primary'>Details</a></td>
                                     </tr>
@@ -109,7 +109,7 @@ const EmpListing = () => {
                     </Modal>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

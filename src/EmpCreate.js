@@ -28,26 +28,14 @@ const EmpCreate = () => {
                     <form className='container' onSubmit={handleSubmit}>
                         <div className='card'>
                             <div className='card-title'>
-                                <h2>Create employee</h2>
+                                <h2 className='flex mt-3 p-4'>Create employee</h2>
                             </div>
                             <div className='card-body'>
                                 <div className='row'>
 
                                     <div className='col-lg-12'>
-                                        <div className='form-group'>
-                                            <label>ID</label>
-                                            <input
-                                                required
-                                                className='form-control'
-                                                disabled="disabled"
-                                                value={employees.id}
-                                            ></input>
-                                        </div>
-                                    </div>
-
-                                    <div className='col-lg-12'>
-                                        <div className='form-group'>
-                                            <label>Name</label>
+                                        <div className='form-group p-2'>
+                                            <label className='p-2'>Name</label>
                                             <input
                                                 required
                                                 className='form-control'
@@ -61,8 +49,8 @@ const EmpCreate = () => {
                                     </div>
 
                                     <div className='col-lg-12'>
-                                        <div className='form-group'>
-                                            <label>Email</label>
+                                        <div className='form-group p-2'>
+                                            <label className='p-2'>Email</label>
                                             <input
                                                 required
                                                 className='form-control'
@@ -75,10 +63,13 @@ const EmpCreate = () => {
                                     </div>
 
                                     <div className='col-lg-12'>
-                                        <div className='form-group'>
-                                            <label>Phone</label>
+                                        <div className='form-group p-2'>
+                                            <label className='p-2'>Phone</label>
                                             <input
                                                 required
+                                                type="number"
+                                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="XXX-XXX-XXXX"
+
                                                 className='form-control'
                                                 placeholder='Phone'
                                                 value={employees.phone}
@@ -89,7 +80,7 @@ const EmpCreate = () => {
                                     </div>
 
                                     <div className='col-lg-12 '  >
-                                        <div className='form-group ' >
+                                        <div className='form-group  d-flex gap-2 mt-3 justify-content-end' >
                                             <button type='submit' className='btn btn-success' >Save</button>
                                             <Link to="/" className='btn btn-danger '>Back</Link>
                                         </div>

@@ -37,7 +37,7 @@ const EditEmployee = () => {
         <div>
             <div className="row">
                 <div className="offset-lg-3 col-lg-6">
-                    <form className="container">
+                    <form onSubmit={(e) => handleUpdate(e, employeeData.id)} className="container">
                         <div className="card" style={{ textAlign: "left", marginTop: "30px" }}>
                             <div className="card-title">
                                 <h2>Employee Edit</h2>
@@ -66,6 +66,10 @@ const EditEmployee = () => {
                                             <label>Email</label>
                                             <input
                                                 className="form-control"
+                                                type="email"
+                                                pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+                                                required
+                                                name="email"
                                                 value={employeeData.email}
                                                 onChange={(e) =>
                                                     setEmployeeData({
@@ -81,8 +85,11 @@ const EditEmployee = () => {
                                         <div className="form-group">
                                             <label>Phone</label>
                                             <input
+                                                required
                                                 className="form-control"
                                                 value={employeeData.phone}
+                                                type="tel"
+                                                pattern="[0-9]{10}" title="Enter the 10 degit number"
                                                 onChange={(e) =>
                                                     setEmployeeData({
                                                         ...employeeData,
@@ -99,7 +106,7 @@ const EditEmployee = () => {
                                             <button
                                                 className="btn btn-success"
                                                 type="submit"
-                                                onClick={(e) => handleUpdate(e, employeeData.id)}
+                                            // onClick={}
                                             >
                                                 update
                                             </button>
