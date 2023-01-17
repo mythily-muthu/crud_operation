@@ -54,7 +54,7 @@ const EmpCreate = () => {
                                             <input
                                                 required
                                                 className='form-control'
-                                                placeholder='Email'
+                                                placeholder='email'
                                                 type="email"
                                                 value={employees.email}
                                                 onChange={(e) => { setEmployees({ ...employees, email: e.target.value }) }}
